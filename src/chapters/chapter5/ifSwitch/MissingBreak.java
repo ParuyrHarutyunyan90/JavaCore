@@ -1,4 +1,4 @@
-package chapters.chapter5;
+package chapters.chapter5.ifSwitch;
 
 public class MissingBreak {
     public static void main(String[] args) {
