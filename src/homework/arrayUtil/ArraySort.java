@@ -12,9 +12,7 @@ public class ArraySort {
                     a = numbers[i];
                     numbers[i] = numbers[j];
                     numbers[j] = a;
-
                 }
-
             }
             System.out.print(numbers[i] + "  ");
         }

@@ -35,10 +35,7 @@ public class PracticeHomework {
 
     //                      վերադարձնել երկու մասիվի ամենամեծ length-ը
     int maxLengtht(int[] array1, int[] array2) {
-        int max;
-        if (array1.length > array2.length) {
-            max = array1.length;
-        } else max = array2.length;
+        int max = array1.length > array2.length ? array1.length : array2.length;
         return max;
 
     }
