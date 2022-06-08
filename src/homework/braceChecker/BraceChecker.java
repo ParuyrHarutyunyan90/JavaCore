@@ -59,6 +59,7 @@ public class BraceChecker {
         pop = stack.pop();
         while (pop != 0) {
             System.out.println("Error: no closed " + pop);
+            b = false;
             pop = stack.pop();
         }
 
