@@ -3,15 +3,17 @@ package homework.braceChecker;
 public class BraceChecker {
 
     private String text;
+    Stack stack = new Stack();
 
     public BraceChecker(String text) {
         this.text = text;
+
     }
 
     public void check() {
-        Stack stack = new Stack();
+
         boolean b = true;
-        char pop;
+        char pop = 0;
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
             switch (c) {
@@ -53,8 +55,13 @@ public class BraceChecker {
                     break;
 
             }
-
         }
+        pop = stack.pop();
+        while (pop != 0) {
+            System.out.println("Error: no closed " + pop);
+            pop = stack.pop();
+        }
+
         System.out.println(b);
     }
 
