@@ -1,8 +1,8 @@
 package chapters.chapter6.stack;
 
 public class Stack {
-    int[] array = new int[10];
-    int index;
+   private int[] array = new int[10];
+    private int index;
 
     Stack() {
         index = -1;
