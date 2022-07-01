@@ -1,11 +1,13 @@
-package homework.books;
+package homework.books.storage;
+
+import homework.books.model.Book;
 
 public class BookStorage {
 
     Book[] array = new Book[10];
     int size = 0;
 
-    void add(Book value) {
+    public void add(Book value) {
         if (size == array.length) {
             inccreaseArray();
         }
@@ -20,13 +22,13 @@ public class BookStorage {
         array = temp;
     }
 
-    void print() {
+    public void print() {
         for (int i = 0; i < size; i++) {
             System.out.println(array[i] + " ");
         }
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -34,7 +36,7 @@ public class BookStorage {
         return array[i - 1];
     }
 
-    int getFirstIndexByValue(Book value) {
+    public int getFirstIndexByValue(Book value) {
         for (int i = 0; i < size; i++) {
             if (array[i] == value) {
                 return i;
@@ -43,11 +45,11 @@ public class BookStorage {
         return -1;  // -1 քանի որ 0-ն նույնպես մասիվի ինդեքս է
     }
 
-    void set(int i, Book value) {
+    public void set(int i, Book value) {
         array[i] = value;
     }
 
-    void add(int index, Book value) {
+    public void add(int index, Book value) {
         if (size + 1 == array.length) {
             inccreaseArray();
         }
@@ -61,7 +63,7 @@ public class BookStorage {
         array[index] = value;
     }
 
-    void delete(int index) {
+    public void delete(int index) {
         for (int i = index; i < size; i++) {
             Book temp;
             temp = array[i];

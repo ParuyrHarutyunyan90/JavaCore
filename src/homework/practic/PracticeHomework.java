@@ -1,4 +1,4 @@
-package homework;
+package homework.practic;
 
 public class PracticeHomework {
     //                փոխակերպել տրված րոպեն վայրկյանի ու վերադարձնել

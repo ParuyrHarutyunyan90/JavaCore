@@ -1,11 +1,13 @@
-package classwork.students;
+package classwork.students.storage;
+
+import classwork.students.model.Student;
 
 public class StudentStorage {
 
     private Student[] array = new Student[10];
     private int size = 0;
 
-    void add(Student student) {
+    public void add(Student student) {
         if (size == array.length) {
             inccreaseArray();
         }
@@ -30,7 +32,7 @@ public class StudentStorage {
         return size == 0;
     }
 
-    Student detByIndex(int i) {
+   public Student detByIndex(int i) {
         return array[i - 1];
     }
 
@@ -61,7 +63,7 @@ public class StudentStorage {
         array[index] = value;
     }
 
-    void delete(int index) {
+    public void delete(int index) {
         if (index >= 0 && index < size) {
             for (int i = index; i < size; i++) {
                 Student temp;
@@ -86,9 +88,9 @@ public class StudentStorage {
     }
 
 
-    public void changeLesson(int index, String lessonChange) {
-        if (index >= 0 && index < size) {
-            array[index].setLesson(lessonChange);
-        }
-    }
+//    public void changeLesson(int index, String lessonChange) {
+//        if (index >= 0 && index < size) {
+//            array[index].setLesson(lessonChange);
+//        }
+//    }
 }
