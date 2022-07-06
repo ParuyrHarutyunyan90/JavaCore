@@ -1,6 +1,7 @@
 package homework.books;
 
 import homework.books.commands.Commands;
+import homework.books.exception.AuthorNotFoundException;
 import homework.books.model.Author;
 import homework.books.model.Book;
 import homework.books.storage.AuthorStorage;
@@ -16,7 +17,7 @@ public class Demo implements Commands {
 
     public static void main(String[] args) {
 
-
+        login();
         boolean run = true;
         while (run) {
 
@@ -57,6 +58,21 @@ public class Demo implements Commands {
         }
     }
 
+    private static void login() {
+        String login = "admin";
+        String password = "123456";
+        System.out.println("Please input login");
+        if (!login.equals(scanner.nextLine())) {
+            System.out.println("incorrect login ! ! !");
+            login();
+        }
+        System.out.println("Please input password");
+        if (!password.equals(scanner.nextLine())) {
+            System.out.println("incorrect Password ! ! !");
+            login();
+        }
+    }
+
     private static void addAuthor() {
 
         System.out.println("Pleae input author name");
@@ -80,10 +96,14 @@ public class Demo implements Commands {
 
     private static void printByPriceRange() {
         System.out.println("Please input book min price ");
-        double min_price = Double.parseDouble(scanner.nextLine());
-        System.out.println("Please input book max price ");
-        double max_price = Double.parseDouble(scanner.nextLine());
-        bookStorage.printBookByPriceRange(min_price, max_price);
+        try {
+            double min = Double.parseDouble(scanner.nextLine());
+            System.out.println("Please input book max price ");
+            double max = Double.parseDouble(scanner.nextLine());
+            bookStorage.printBookByPriceRange(min, max);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void printByGenre() {
@@ -105,22 +125,34 @@ public class Demo implements Commands {
         } else {
             authorStorage.print();
             System.out.println("Please input book author name index");
-            int index = Integer.parseInt(scanner.nextLine());
-            Author author = authorStorage.getByIndex(index);
-            System.out.println("Please input book title");
-            String title = scanner.nextLine();
-            System.out.println("Please input book price");
-            String priceStr = scanner.nextLine();
-            System.out.println("Please input book count");
-            String countStr = scanner.nextLine();
-            System.out.println("Please input book genre");
-            String genre = scanner.nextLine();
+            try {
+                int index = Integer.parseInt(scanner.nextLine());
 
-            double price = Double.parseDouble(priceStr);
-            int count = Integer.parseInt(countStr);
-            Book book = new Book(title, author, price, count, genre);
-            bookStorage.add(book);
-            System.out.println("Thank you book is added");
+                try {
+                    Author author = authorStorage.getByIndex(index);
+
+
+                    System.out.println("Please input book title");
+                    String title = scanner.nextLine();
+                    System.out.println("Please input book price");
+                    String priceStr = scanner.nextLine();
+                    System.out.println("Please input book count");
+                    String countStr = scanner.nextLine();
+                    System.out.println("Please input book genre");
+                    String genre = scanner.nextLine();
+
+                    double price = Double.parseDouble(priceStr);
+                    int count = Integer.parseInt(countStr);
+                    Book book = new Book(title, author, price, count, genre);
+                    bookStorage.add(book);
+                    System.out.println("Thank you book is added");
+
+                } catch (AuthorNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+            } catch (NumberFormatException e) {
+                e.getMessage();
+            }
         }
 
 

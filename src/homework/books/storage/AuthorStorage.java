@@ -1,12 +1,13 @@
 package homework.books.storage;
 
 
+import homework.books.exception.AuthorNotFoundException;
 import homework.books.model.Author;
 
 public class AuthorStorage {
 
     private Author[] array = new Author[10];
-   private int size = 0;
+    private int size = 0;
 
     public void add(Author value) {
         if (size == array.length) {
@@ -14,8 +15,9 @@ public class AuthorStorage {
         }
         array[size++] = value;
     }
-    public int getSize () {
-     return size;
+
+    public int getSize() {
+        return size;
     }
 
     private void inccreaseArray() {
@@ -28,7 +30,7 @@ public class AuthorStorage {
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println( i + " " + array[i] + " ");
+            System.out.println(i + " " + array[i] + " ");
         }
     }
 
@@ -36,8 +38,12 @@ public class AuthorStorage {
         return size == 0;
     }
 
-     public Author getByIndex(int i ) {
-        return array[i];
+    public Author getByIndex(int i) throws AuthorNotFoundException {
+        if (i >= 0 && i < size) {
+            return array[i];
+        } else {
+            throw new AuthorNotFoundException("Author with" + i + "does not exists");
+        }
     }
 
     public int getFirstIndexByValue(Author value) {
