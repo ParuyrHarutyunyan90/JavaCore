@@ -1,6 +1,7 @@
 package homework.books;
 
 import homework.books.commands.Commands;
+import homework.books.enumes.Gender;
 import homework.books.exception.AuthorNotFoundException;
 import homework.books.model.Author;
 import homework.books.model.Book;
@@ -82,12 +83,13 @@ public class Demo implements Commands {
         System.out.println("Pleae input author email");
         String email = scanner.nextLine();
         System.out.println("Please input author gender (MALE) (FEMALE)");
-        String gender = scanner.nextLine();
-        Author author = new Author(name, surName, email, gender);
-        if (author.getGender().equals("MALE") || author.getGender().equals("FEMALE")) {
+        try {
+            Gender gender = Gender.valueOf(scanner.nextLine().toUpperCase());
+            Author author = new Author(name, surName, email, gender);
             authorStorage.add(author);
-        } else {
-            System.out.println("Please input correct gender: MALE or FEMALE");
+            System.out.println("Author added");
+        } catch (IllegalArgumentException e) {
+            System.out.println("incorrect gender: Please input MALE or FEMALE");
             addAuthor();
         }
 
@@ -170,6 +172,5 @@ public class Demo implements Commands {
         System.out.println("Please input " + PRINT_ALL_AUTHORS + " for print all Authors");
 
     }
-
 
 }
