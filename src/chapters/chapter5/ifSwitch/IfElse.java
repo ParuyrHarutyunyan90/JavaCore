@@ -1,6 +1,6 @@
 package chapters.chapter5.ifSwitch;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 
 public class IfElse {
     public static void main(String[] args) {

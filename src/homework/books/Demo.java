@@ -19,6 +19,7 @@ public class Demo implements Commands {
     public static void main(String[] args) {
 
         login();
+
         boolean run = true;
         while (run) {
 
