@@ -1,13 +1,13 @@
 package homework.books.storage;
 
-import homework.books.model.Book;
+import homework.books.model.User;
 
-public class BookStorage {
+public class UserStorage {
 
-    Book[] array = new Book[10];
+    User[] array = new User[10];
     int size = 0;
 
-    public void add(Book value) {
+    public void add(User value) {
         if (size == array.length) {
             increaseArray();
         }
@@ -15,7 +15,7 @@ public class BookStorage {
     }
 
     private void increaseArray() {
-        Book[] temp = new Book[array.length + 10];
+        User[] temp = new User[array.length + 10];
         if (size >= 0) System.arraycopy(array, 0, temp, 0, size);
         array = temp;
     }
@@ -30,11 +30,16 @@ public class BookStorage {
         return size == 0;
     }
 
-    Book detByIndex(int i) {
-        return array[i - 1];
+    public User getUserByEmail(String email) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].getEmail().equals(email)) {
+                return array[i];
+            }
+        }
+        return null;
     }
 
-    public int getFirstIndexByValue(Book value) {
+    public int getFirstIndexByValue(User value) {
         for (int i = 0; i < size; i++) {
             if (array[i] == value) {
                 return i;
@@ -43,15 +48,15 @@ public class BookStorage {
         return -1;  // -1 քանի որ 0-ն նույնպես մասիվի ինդեքս է
     }
 
-    public void set(int i, Book value) {
+    public void set(int i, User value) {
         array[i] = value;
     }
 
-    public void add(int index, Book value) {
+    public void add(int index, User value) {
         if (size + 1 == array.length) {
             increaseArray();
         }
-        Book temp;
+        User temp;
         for (int i = size; i >= index; i--) {
             temp = array[i];
             array[i + 1] = temp;
@@ -63,7 +68,7 @@ public class BookStorage {
 
     public void delete(int index) {
         for (int i = index; i < size; i++) {
-            Book temp;
+            User temp;
             temp = array[i];
             array[i] = array[i + 1];
             array[i + 1] = temp;
@@ -71,30 +76,5 @@ public class BookStorage {
         size--;
     }
 
-    public void printBookByAuthorName(String authorName) {
-        for (int i = 0; i < size; i++) {
-            if (array[i].getAuthorName().equals(authorName.trim())) {
-                System.out.println(array[i]);
-            }
 
-        }
-    }
-
-    public void printBookByGenre(String genre) {
-        for (int i = 0; i < size; i++) {
-            if (array[i].getGenre().equals(genre.trim())) {
-                System.out.println(array[i]);
-            }
-
-        }
-    }
-
-    public void printBookByPriceRange(double min_price, double max_price) {
-        for (int i = 0; i < size; i++) {
-            if (array[i].getPrice() >= min_price && array[i].getPrice() <= max_price) {
-                System.out.println(array[i]);
-            }
-
-        }
-    }
 }
