@@ -7,7 +7,7 @@ public class CollectionExample {
     public static void main(String[] args) {
         String[] str = {"hello", "2", "from", "3", "4", "java"};
         List<String> stringList = new ArrayList<>(List.of(str));
-        printFirstFive(stringList);
+        System.out.println(listToSet(stringList));
     }
 
     //մեթոդը գրել այնպես, որ կանչենք, ու իրան ստրինգների մասիվ տանք,
@@ -29,13 +29,16 @@ public class CollectionExample {
     // մեթոդը գրել այնպես, որ ընդունի ցանկացած String-ների լիստ,
     // վերադարձնի նույն արժեքներով HashSet
     static Set<String> listToSet(List<String> list) {
-        return (HashSet<String>) list;
+        Set<String> listToSet = new HashSet<>(list);
+
+        return listToSet;
     }
 
     // մեթոդը գրել այնպես, որ ընդունի ցանկացած Integer-ների լիստ,
     // վերադարձնի նույն արժեքներով LinkedList-ի օբյեկտ։
-    static LinkedList<Integer> listToLinkedList(List<Integer> list) {
-        return (LinkedList<Integer>) list;
+    static List<Integer> listToLinkedList(List<Integer> list) {
+        List<Integer> integerList = new LinkedList<>(list);
+        return integerList;
     }
 
     // մեթոդը գրել այնպես, որ ընդունի ցանկացած Integer-ների լիստ,
